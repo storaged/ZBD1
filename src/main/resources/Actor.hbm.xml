@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-11-04 21:04:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+<!--     <typedef name="rating" class='Rating'> -->
+<!--   		<param name="Actor">org.zhibernate.domain.samples.inheritance.Actor</param> -->
+<!-- 	</typedef> -->
+    <joined-subclass name="zbd1.Actor" extends="zbd1.TVWorker" table="ACTOR" lazy="false">
+        <key>
+            <column name="ID_ACTOR" />
+        </key>
+ 
+        <property name="rating">
+            <column name="RATING" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">zbd1.Rating</param>
+            </type>
+        </property>
+  
+        <set name="episodes" cascade="save-update" table="EPISODE_ACTOR" inverse="false" lazy="false">
+            <key>
+                <column name="ID_ACTOR" />
+            </key>
+            <many-to-many column="ID_EPISODE" class="zbd1.Episode" />
+        </set>
+    </joined-subclass>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-11-04 21:04:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <joined-subclass name="zbd1.Reporter" extends="zbd1.TVWorker" table="REPORTER" lazy="false">
+        <key>
+            <column name="ID_REPORTER" />
+        </key>
+        <property name="speciality" type="java.lang.String">
+            <column name="SPECIALITY" />
+        </property>
+        <set name="reportages" table="REPORTAGE" cascade="delete" inverse="false" lazy="false">
+            <key>
+                <column name="ID_REPORTER" />
+            </key>
+            <one-to-many class="zbd1.Reportage" />
+        </set>
+    </joined-subclass>
+</hibernate-mapping>

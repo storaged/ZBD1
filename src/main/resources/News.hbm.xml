@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-11-05 17:39:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="zbd1.News" extends="zbd1.TVProduction" discriminator-value="News" lazy="false">
+        <property name="audience" type="long">
+            <column name="AUDIENCE" />
+        </property>
+        <set name="reportages" table="REPORTAGE" cascade="save-update, delete" lazy="false">
+            <key>
+                <column name="ID" />
+            </key>
+            <one-to-many class="zbd1.Reportage" />
+        </set>
+<!-- if we want one-to-one relation between news and reportage -->
+<!-- <one-to-one name="reportage" class="zbd1.Reportage"></one-to-one> -->
+    </subclass>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-11-04 21:04:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="zbd1.TVSeries" extends="zbd1.TVProduction" discriminator-value="TVSeries"
+    lazy="false">
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <set name="episodes" table="EPISODE" inverse="false" cascade="save-update, delete" lazy="false">
+            <key>
+                <column name="ID_TVSERIES" />
+            </key>
+            <one-to-many class="zbd1.Episode" />
+        </set>
+    </subclass>
+</hibernate-mapping>

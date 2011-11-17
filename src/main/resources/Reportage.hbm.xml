@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-11-05 17:39:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="zbd1.Reportage" table="REPORTAGE" lazy="false">
+
+<!-- if we want reportage to exist only when news exist -->
+<!--         <id name="id" column="ID" > -->
+<!--             <generator class="foreign" > -->
+<!--             	<param name="property">news</param> -->
+<!--             </generator> -->
+<!--         </id> -->
+		<id name="id" type="java.lang.Long">
+            <column name="ID_REPORTAGE" />
+            <generator class="native" />
+        </id>
+                
+        <property name="subject" type="java.lang.String">
+            <column name="SUBJECT" />
+        </property>
+        <property name="content" type="java.lang.String">
+            <column name="CONTENT" />
+        </property>
+        <property name="version" type="int">
+            <column name="VERSION" />
+        </property>
+        <many-to-one name="reporter" class="zbd1.Reporter" fetch="join">
+            <column name="ID_REPORTER" not-null="true" />
+        </many-to-one>
+        <many-to-one name="news" class="zbd1.News" fetch="join">
+            <column name="ID" />
+        </many-to-one>
+<!-- 	if we want one-to-one relation between reportage and news -->
+<!--    <one-to-one name="news" class="zbd1.News" constrained="true"></one-to-one> -->
+    </class>
+</hibernate-mapping>

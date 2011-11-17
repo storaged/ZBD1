@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-11-04 21:04:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <joined-subclass name="zbd1.TVWorker" extends="zbd1.Person" table="TVWORKER" lazy="false">
+        <key>
+            <column name="ID_TVWORKER" />
+        </key>
+        <property name="tvStation" type="java.lang.String">
+            <column name="TVSTATION" />
+        </property>
+        <set name="tvProductions" cascade="save-update" table="TVPRODUCTION_TVWORKER" lazy="false">
+            <key>
+                <column name="ID_TVWORKER" />
+            </key>
+            <many-to-many column="ID" class="zbd1.TVProduction" />
+        </set>
+    </joined-subclass>
+</hibernate-mapping>

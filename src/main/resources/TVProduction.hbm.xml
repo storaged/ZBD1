@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-11-04 21:04:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="zbd1.TVProduction" table="TVPRODUCTION" abstract="true">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <discriminator type="string">
+            <column name="DISCR_COL" />
+        </discriminator>
+        <set name="date" cascade="save-update, delete" table="DATE" inverse="false" lazy="false">
+            <key>
+            	<column name="ID" />
+            </key>
+            <element type="java.util.Date">
+                <column name="DATE" />
+            </element>
+        </set>
+        <set name="tvWorkers" cascade="save-update" inverse="true" table="TVPRODUCTION_TVWORKER" lazy="false">
+            <key>
+                <column name="ID" />
+            </key>
+            <many-to-many column="ID_TVWORKER" class="zbd1.TVWorker" />
+        </set>
+    </class>
+</hibernate-mapping>
